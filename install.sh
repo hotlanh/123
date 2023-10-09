@@ -194,7 +194,6 @@ install_XrayR() {
         cp custom_outbound.json /etc/XrayR/
     fi
     bash <(curl -Ls https://raw.githubusercontent.com/hotlanh/123/main/XrayR.sh
-    chmod +x /usr/bin/XrayR
     ln -s /usr/bin/XrayR /usr/bin/xrayr # chữ thường tương thích
     chmod +x /usr/bin/xrayr
  
