@@ -120,7 +120,7 @@ cat >>config.yml<<EOF
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
-      ApiHost: "https://vpn4g.xyz"
+      ApiHost: "https://go.vpn4g.xyz"
       ApiKey: "khongbietdiencaigibaygio"
       NodeID: $node_id
       NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
