@@ -21,10 +21,8 @@ pre_install(){
    read -p "  Nhập loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
-  if [ "$NodeType" == "2" ]; then
+  elif [ "$NodeType" == "2" ]; then
     NodeType="Trojan"
-  elif [ "$NodeType" == "3" ]; then
-    NodeType="Shadowsocks"
   else 
    NodeType="V2ray"
   fi
