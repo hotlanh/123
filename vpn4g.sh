@@ -17,11 +17,14 @@ pre_install(){
  
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
+  echo -e "  [3] Shadowsocks"
    read -p "  Nhập loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
     NodeType="Trojan"
+  elif [ "$NodeType" == "3" ]; then
+    NodeType="Shadowsocks"
   else 
    NodeType="V2ray"
   fi
@@ -67,27 +70,16 @@ clone_node(){
     a=0
   while [ $a -lt $n ]
   do
-  
-  #link web 
-   read -p "  Nhập domain web (không cần https://): " api_host
-    [ -z "${api_host}" ] && api_host=0
-    echo "--------------------------------"
-  echo "  Web của bạn là https://${api_host}"
-  echo "--------------------------------"
-  #key web
-  read -p "  Nhập key của web: " api_key
-    [ -z "${api_key}" ] && api_key=0
-  echo "--------------------------------"
-  echo "  Key của web là ${api_key}"
-  echo "--------------------------------"
-
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
+  echo -e "  [3] Shadowsocks"
    read -p "  Nhập loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
     NodeType="Trojan"
+  elif [ "$NodeType" == "3" ]; then
+    NodeType="Shadowsocks"
   else 
    NodeType="V2ray"
   fi
