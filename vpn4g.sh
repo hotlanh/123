@@ -38,20 +38,7 @@ pre_install(){
   echo "-------------------------------"
   
 
-  #giới hạn thiết bị
-read -p "  Nhập giới hạn thiết bị: " DeviceLimit
-  [ -z "${DeviceLimit}" ] && DeviceLimit="0"
-  echo "-------------------------------"
-  echo "  Thiết bị tối đa là ${DeviceLimit}"
-  echo "-------------------------------"
-  
-  
-  #IP vps
- read -p "  Nhập địa chỉ Node: " CertDomain
-  [ -z "${CertDomain}" ] && CertDomain="0"
- echo "-------------------------------"
-  echo "  Địa chỉ Node là ${CertDomain}"
- echo "-------------------------------"
+
 
  config
   a=$((a+1))
@@ -128,7 +115,7 @@ cat >>config.yml<<EOF
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
-      DeviceLimit: $DeviceLimit # Local settings will replace remote settings, 0 means disable
+      DeviceLimit: 0# Local settings will replace remote settings, 0 means disable
       RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
@@ -163,7 +150,7 @@ cat >>config.yml<<EOF
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: file # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "$CertDomain" # Domain to cert
+        CertDomain: "vippp.onevpn.id.vn" # Domain to cert
         CertFile: /etc/XrayR/443.crt # Provided if the CertMode is file
         KeyFile: /etc/XrayR/443.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
@@ -182,8 +169,68 @@ EOF
  }
 
 case "${num}" in
-1) bash <(curl -Ls https://raw.githubusercontent.com/hotlanh/123/main/install.sh)
-openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/443.crt -keyout /etc/XrayR/443.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
+1) bash <(curl -Ls https://raw.githubusercontent.com/longyi8/XrayR/master/install.sh)
+EOF
+  cat >key.pem <<EOF
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCOKQm6j8o89yC
+ewDRky/P0pvBurvMWyA95SgzzfIW8ai3+pZOi4wGZ7qACfcE50wlBxbPm4y4Xfrh
+ti10uY7pfQ9YEkIwH+LNuYkroJ3CohJ4XO46WD5zECu7Rjfl7UGKdSQfNOB9WoTU
+bbZ+F4kCVU+DngXKWwJT28OEdiYuQbcxrLHjyV4jwUxPdceudAQml8cIA+JV5C4J
+dylRxv7vYRTAfhhHEGTBCLBMZ5xVDyt0tbUZXPAJ910V3cWig+yD4AVgoYk5r6nm
+UOKAO8HmMvN5baNP4y6BAwpHouKUHgxBFr/LDEgVllv40bjyMQvjP9lqFt4NDX2v
+l/HNu6pNAgMBAAECggEARKPS88PenYENwflpsSeFArwqet2dSFw+OVG3ExPqRoyS
+da70lv6/dnYLVfvvloaOBRoLyERvh6sDIukJCJMZvFAL77LIPIzQUaeMIGSLzMEN
+qQci1HDiZTTmV7G5yKNAggfjQ7oiynqGrjK2B7sWm0H+L4RWBI2EdZGZ+ELvPHI0
+KRuhiItgEWQarpUAkq509Ix8UUBlCOATAHaeP9a3gmFK92M9tkDt9qi0wgKXA4Sp
+GFN6qtTT/PqsTkN3pBxuYiLPb43siTXNpMgJO22hDS9gi7gSmHi5wcKZWSri7sLF
+/BfVANdpyDltsGHx7lcEEI+Q/xLkuDk5pD5Dy4jYiwKBgQDu7fhA38UFU5p2zQLO
+VUAPRbyVZsOetgcr2Ry5urgN5fDFwN0bunUnslpY2qNp1zjO6g74DHZ3zbxxbwkt
+CSX/B7smUQv9BHAxk3oB8IK6PS0Arj0temEBC6ezlt6YetLJ3O6oHErf+3yzwakh
+DXLWC8DGVY1k63tKYp/Xvk9McwKBgQDQGPRvjgYH/1b+8zgTy7tkDZlFUWAdgBL9
+7Xc8ubcBx+Rhq5jzNEJ1tpDnPqpT7NbE6eBI+zMAXS6v+moXlYlLIoDkDX8qKv+K
+xn0VeipwCiaVuOrsaewa9jCrAnHNFY5MKz9ldZ5sT8JlYCbqVVmK0Kc6k3D0ayfo
+KIusVHw+PwKBgDi9BCYLvZK9PsIVfyQWdIbr7ZOg+rVWzq8n+L1WTNzoDNw5J4it
+J6MMpI3TJdk9hb0FMhbPhtZ+YdCiKJCsSnycjmHT/z/PbQEo32FUhwbI/kXaGqcR
+F7YS2Xk5S5T0HdhYAcikJ1e3Ne7N/2bc9bdExTuUF2au0PFiKEkoZVZnAoGAGJrq
+xAnx8p4hZjHR7p1HQfRNrCGMENDk7ftW/uoilmZRPa8xfYgvV4XHqmABebzmRBA3
+QcnZ5PAfphUg2DsJKcYhoVVrNMwyvPDtN03jmK3KlCdyN5Pqo+F6La4zUIF8+sqe
+S1vV6I6huKTe1RRUaxJyw31NfMjyxgONSEoRCrcCgYEAiTgGkD68gqZtCxL2JGT3
+/EQi3OSfg7ApNB58Jyfqcr3M34V38bSufUplEbayO7R8DUtLJ1LnH3dMyLzgpzs7
+d/BRIxRkOwSmeLYntE8yDuHURsqoixVNEngCIzE8W7fTVEhpZvTByfNapw/us6K4
+1aYB5jUnQjJgUR/90a5zkOE=
+-----END PRIVATE KEY-----
+EOF
+  cat >crt.pem <<EOF
+-----BEGIN CERTIFICATE-----
+MIIEpDCCA4ygAwIBAgIUXIqMoUjyuOIedcyQDteFcrEyy4AwDQYJKoZIhvcNAQEL
+BQAwgYsxCzAJBgNVBAYTAlVTMRkwFwYDVQQKExBDbG91ZEZsYXJlLCBJbmMuMTQw
+MgYDVQQLEytDbG91ZEZsYXJlIE9yaWdpbiBTU0wgQ2VydGlmaWNhdGUgQXV0aG9y
+aXR5MRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRMwEQYDVQQIEwpDYWxpZm9ybmlh
+MB4XDTIzMTAxMTE1MjgwMFoXDTM4MTAwNzE1MjgwMFowYjEZMBcGA1UEChMQQ2xv
+dWRGbGFyZSwgSW5jLjEdMBsGA1UECxMUQ2xvdWRGbGFyZSBPcmlnaW4gQ0ExJjAk
+BgNVBAMTHUNsb3VkRmxhcmUgT3JpZ2luIENlcnRpZmljYXRlMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwjikJuo/KPPcgnsA0ZMvz9Kbwbq7zFsgPeUo
+M83yFvGot/qWTouMBme6gAn3BOdMJQcWz5uMuF364bYtdLmO6X0PWBJCMB/izbmJ
+K6CdwqISeFzuOlg+cxAru0Y35e1BinUkHzTgfVqE1G22fheJAlVPg54FylsCU9vD
+hHYmLkG3Mayx48leI8FMT3XHrnQEJpfHCAPiVeQuCXcpUcb+72EUwH4YRxBkwQiw
+TGecVQ8rdLW1GVzwCfddFd3FooPsg+AFYKGJOa+p5lDigDvB5jLzeW2jT+MugQMK
+R6LilB4MQRa/ywxIFZZb+NG48jEL4z/ZahbeDQ19r5fxzbuqTQIDAQABo4IBJjCC
+ASIwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcD
+ATAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBQkh9kqytDq1La1b1yyIgYoBJfm2TAf
+BgNVHSMEGDAWgBQk6FNXXXw0QIep65TbuuEWePwppDBABggrBgEFBQcBAQQ0MDIw
+MAYIKwYBBQUHMAGGJGh0dHA6Ly9vY3NwLmNsb3VkZmxhcmUuY29tL29yaWdpbl9j
+YTAnBgNVHREEIDAegg4qLm9uZXZwbi5pZC52boIMb25ldnBuLmlkLnZuMDgGA1Ud
+HwQxMC8wLaAroCmGJ2h0dHA6Ly9jcmwuY2xvdWRmbGFyZS5jb20vb3JpZ2luX2Nh
+LmNybDANBgkqhkiG9w0BAQsFAAOCAQEAMXh7ydVJOX9o3SOdIu2k3bax21OPP3a9
+iIt+aFKnMvTHoiKc89aqMpSJ0wrZMcc3oLB/LAG6WRaB8y0bWH1nmzUsRIyQHtlF
+HvuDB6CM+mb4hOfSeGAMfguwnphemoRKYw56v6Kv27PDhX6LWDdj/+u+y1f7wiZi
++1mkjUKcVbWTtOm+FVfBtDI2eKMlq3TgDMorLAqUd+DzWU3QOeYT9q1G4E5Wu9z9
+s5VA4OyPGfZJUeRD0XJgWLB64qVSMX4Kl3vVX1zXQ1oP8qQv+yCwAqAjgFuFehbW
+SEoX9z6BWDwQvRotlkozKZIUTWRpXYoCpm8ob04BqZIjKu0sWcpOrw==
+-----END CERTIFICATE-----
+
+EOF
 cd /etc/XrayR
   cat >config.yml <<EOF
 Log:
